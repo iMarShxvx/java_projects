@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class Pizza {
+	private static double price;
+	private String size;
+	private int toppings;
+	String choice;
+	
+	Pizza() {
+		price=0;
+		size="";
+		toppings=0;
+	}
+	
+	public double calCost() {
+		System.out.println("Enter size of pizza: ");
+		Scanner input=new Scanner(System.in);
+		size=input.nextLine();
+		System.out.println("Enter number of toppings: ");
+		toppings=input.nextInt();
+		input.nextLine();
+		
+		if(size.compareToIgnoreCase("s")==0) {
+			price=1000+(toppings*2);
+		}
+		
+		else if (size.compareToIgnoreCase("m")==0) {
+			price=1200+(toppings*2);
+		}
+		
+		else if(size.compareToIgnoreCase("l")==0){
+			price=1400+(toppings*2);
+		}
+		
+		do {
+			System.out.println("Do you want to order more pizzas? Y/N ");
+			choice=input.nextLine();
+		
+			if(choice.compareToIgnoreCase("y")==0) {
+			System.out.println("Enter size of pizza: ");
+			size=input.nextLine();
+			System.out.println("Enter number of toppings: ");
+			toppings=input.nextInt();
+			input.nextLine();
+			
+			switch(size) {
+			case "s":
+				price+=10+(toppings*2);
+				break;
+			case "m":
+				price+=12+(toppings*2);
+				break;
+			case "l":
+				price+=14+(toppings*2);
+				break;
+			default :
+				break;
+			}
+		  }
+			
+		else {
+			System.out.println("Thank you!");
+		  }
+			
+		}
+		
+		while(choice.compareToIgnoreCase("y")==0);
+		
+		return price;
+		
+	}
+	
+	public static void main (String[] args) {
+		Pizza p1=new Pizza();
+		double price1=p1.calCost();
+		System.out.println("Total bill: "+price1);
+	}
+
+}
